@@ -1,5 +1,5 @@
 from Crypto.Hash import SHA256
-from Crypto.Util import strxor
+from Crypto.Util.strxor import strxor
 
 
 def hash(data):
@@ -10,4 +10,4 @@ def hash(data):
 
 def xor(str1, str2):
     assert len(str1) == len(str2)
-    return strxor.strxor(str1, str2)
+    return strxor(str1, str2)
