@@ -1,24 +1,10 @@
 from Crypto.Cipher import AES
-from Crypto.Util import number
-
-
-class XCounter:
-    # Implements a string counter to do AES-CTR mode
-    i = 0
-
-    def __init__(self, size):
-        self.size = size
-
-    def __call__(self):
-        ii = number.long_to_bytes(self.i)
-        ii = '\x00' * (self.size-len(ii)) + ii
-        self.i += 1
-        return ii
+from Crypto.Util import Counter
 
 
 def create_cipher(key):
     return AES.new(key, AES.MODE_CTR,
-                   counter=XCounter(len(key)))
+                   counter=Counter.new(len(key)*8, initial_value=0))
 
 
 def encrypt(key, data):
