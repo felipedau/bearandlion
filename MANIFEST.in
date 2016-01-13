@@ -1,0 +1,6 @@
+include bearandlion/_version.py
+include COPYING
+include COPYING.LESSER
+include README
+include versioneer.py
+recursive-include tests *
