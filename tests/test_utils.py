@@ -1,6 +1,25 @@
 import pytest
 
-from bearandlion.utils import xor
+from bearandlion.utils import cipher, xor
+
+
+AES_ACCEPTED_KEY_LENGTHS = [16, 24, 32]
+
+
+@pytest.fixture(params=AES_ACCEPTED_KEY_LENGTHS)
+def key_length(request):
+    return request.param
+
+
+def test_aes_accepted_key_length(key_length):
+    cipher.create_cipher(key=b'\x00'*key_length)
+
+
+def test_aes_counter_length_based_on_key(key_length):
+    key = b'\x00' * key_length
+    plaintext = b'\x01' * key_length
+    ciphertext = cipher.encrypt(key, plaintext)
+    cipher.decrypt(key, ciphertext)
 
 
 DATA_LENGTHS = range(3)
