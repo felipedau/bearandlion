@@ -1,12 +1,12 @@
 from .utils import cipher, hash, xor
 
 
-def encrypt(key, message):
+def encrypt(key, data):
     k = len(key)
-    assert len(message) >= k * 2
+    assert len(data) >= k * 2
 
     # Round 1
-    r1 = xor(hash(message[k:]+key+'1')[:k], message[:k]) + message[k:]
+    r1 = xor(hash(data[k:]+key+'1')[:k], data[:k]) + data[k:]
 
     # Round 2
     k2 = xor(r1[:k], key)
@@ -22,11 +22,11 @@ def encrypt(key, message):
     return r4
 
 
-def decrypt(key, message):
+def decrypt(key, data):
     k = len(key)
-    assert len(message) >= k * 2
+    assert len(data) >= k * 2
 
-    r4 = message
+    r4 = data
 
     # Round 4
     k4 = xor(r4[:k], key)
