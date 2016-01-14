@@ -1,9 +1,9 @@
-from .utils import cipher, hash, xor
+from .utils import check_data_length, cipher, hash, xor
 
 
 def encrypt(key, data):
     k = len(key)
-    assert len(data) >= k * 2
+    check_data_length(len(data), k)
 
     # Round 1
     r1 = xor(hash(data[k:]+key+'1')[:k], data[:k]) + data[k:]
@@ -24,7 +24,7 @@ def encrypt(key, data):
 
 def decrypt(key, data):
     k = len(key)
-    assert len(data) >= k * 2
+    check_data_length(len(data), k)
 
     r4 = data
 

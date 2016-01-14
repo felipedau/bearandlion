@@ -2,7 +2,7 @@ import binascii
 
 import pytest
 
-from bearandlion import lioness
+from bearandlion import errors, lioness
 
 
 CIPHERS = [lioness]
@@ -23,3 +23,22 @@ def test_encrypt_decrypt(cipher):
     )
     ciphertext = cipher.encrypt(key, plaintext)
     assert cipher.decrypt(key, ciphertext) == plaintext
+
+
+OPERATIONS = ['encrypt', 'decrypt']
+DATA_LENGTHS = range(4)
+
+
+@pytest.mark.parametrize('data_length', DATA_LENGTHS)
+@pytest.mark.parametrize('operation', OPERATIONS)
+@pytest.mark.parametrize('cipher', CIPHERS, ids=CIPHERS_IDS)
+def test_data_length(cipher, operation, data_length):
+    unit = binascii.unhexlify('00112233445566778899aabbccddeeff')
+    data = unit * data_length
+    is_short = data < unit * 2
+    try:
+        cipher.__dict__[operation](key=unit, data=data)
+    except errors.ShortDataError:
+        assert is_short
+    else:
+        assert not is_short

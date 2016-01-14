@@ -1,1 +1,1 @@
-from .utils import hash, xor
+from .utils import check_data_length, hash, xor
