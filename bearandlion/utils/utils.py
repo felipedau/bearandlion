@@ -9,5 +9,4 @@ def hash(data):
 
 
 def xor(str1, str2):
-    assert len(str1) == len(str2)
     return strxor(str1, str2)
