@@ -6,15 +6,12 @@ from bearandlion.utils import cipher, xor
 AES_ACCEPTED_KEY_LENGTHS = [16, 24, 32]
 
 
-@pytest.fixture(params=AES_ACCEPTED_KEY_LENGTHS)
-def key_length(request):
-    return request.param
-
-
+@pytest.mark.parametrize('key_length', AES_ACCEPTED_KEY_LENGTHS)
 def test_aes_accepted_key_length(key_length):
     cipher.create_cipher(key=b'\x00'*key_length)
 
 
+@pytest.mark.parametrize('key_length', AES_ACCEPTED_KEY_LENGTHS)
 def test_aes_counter_length_based_on_key(key_length):
     key = b'\x00' * key_length
     plaintext = b'\x01' * key_length

@@ -4,7 +4,7 @@ from Crypto.Util import Counter
 
 def create_cipher(key):
     return AES.new(key, AES.MODE_CTR,
-                   counter=Counter.new(len(key)*8, initial_value=0))
+                   counter=Counter.new(128, initial_value=0))
 
 
 def encrypt(key, data):
