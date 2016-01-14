@@ -9,11 +9,7 @@ CIPHERS = [lioness]
 CIPHERS_IDS = [c.__name__.split('.')[-1] for c in CIPHERS]
 
 
-@pytest.fixture(params=CIPHERS, ids=CIPHERS_IDS)
-def cipher(request):
-    return request.param
-
-
+@pytest.mark.parametrize('cipher', CIPHERS, ids=CIPHERS_IDS)
 def test_encrypt_decrypt(cipher):
     key = binascii.unhexlify(
         '00112233445566778899aabbccddeeff'
