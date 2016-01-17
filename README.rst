@@ -1,6 +1,8 @@
 bearandlion
 -----------
 This package is inspired by **LIONESS**, a Large Block Cipher
+described in the `paper`_ *"Two practical and provably secure block
+ciphers: BEAR and LION*" by Ross Anderson and Eli Biham, and
 implemented by `Ian Goldberg`_ as part of `Sphinx`_. It should be
 considered a fork of the `original implementation`_ released by *Ian
 Goldberg* on 2011-03-06. The initial commit of this repository was
@@ -46,5 +48,6 @@ Acknowledgements
 .. _`github issue tracker`: https://github.com/felipedau/bearandlion/issues
 .. _`ian goldberg`: https://cs.uwaterloo.ca/~iang
 .. _`original implementation`: https://crysp.uwaterloo.ca/software/Sphinx-0.8.tar.gz
+.. _`paper`: http://link.springer.com/chapter/10.1007%2F3-540-60865-6_48
 .. _`pycrypto`: https://pypi.python.org/pypi/pycrypto
 .. _`sphinx`: https://cypherpunks.ca/~iang/pubs/Sphinx_Oakland09.pdf
