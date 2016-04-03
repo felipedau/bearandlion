@@ -9,7 +9,11 @@ CIPHERS = [lioness]
 CIPHERS_IDS = [c.__name__.split('.')[-1] for c in CIPHERS]
 
 
-@pytest.mark.parametrize('cipher', CIPHERS, ids=CIPHERS_IDS)
+@pytest.fixture(params=CIPHERS, ids=CIPHERS_IDS)
+def cipher(request):
+    return request.param
+
+
 def test_encrypt_decrypt(cipher):
     key = binascii.unhexlify(
         '00112233445566778899aabbccddeeff'
@@ -27,7 +31,6 @@ DATA_LENGTHS = range(4)
 
 @pytest.mark.parametrize('data_length', DATA_LENGTHS)
 @pytest.mark.parametrize('operation', OPERATIONS)
-@pytest.mark.parametrize('cipher', CIPHERS, ids=CIPHERS_IDS)
 def test_data_length(cipher, operation, data_length):
     unit = binascii.unhexlify('00112233445566778899aabbccddeeff')
     data = unit * data_length
