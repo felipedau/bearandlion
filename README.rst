@@ -38,8 +38,9 @@ paper.
 
 Acknowledgements
 ----------------
-- Thanks to *David R. Andersen* for working on the development of
-  this package and for supervising Felipe's Senior Design Project
+- Thanks to *David R. Andersen* and *Francisco Pereira Junior* for
+  working on the development of this package and for supervising
+  Felipe's Senior Design Project
 
 - Thanks to *George Danezis* and *Ian Goldberg* for implementing
   *LIONESS*.
