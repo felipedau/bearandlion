@@ -1,7 +1,9 @@
 import pytest
+from Crypto.Util.number import bytes_to_long
 
 from bearandlion.utils import cipher, hash, xor
 
+from .vectors.ciphers.aes.aes_vector_sets import AesVectorSets
 from .vectors.hashes.sha256.sha256_vector_sets import Sha256VectorSets
 
 
@@ -22,6 +24,28 @@ def test_aes_counter_length_based_on_key(key_length):
     plaintext = b'\x01' * key_length
     ciphertext = cipher.encrypt(key, plaintext)
     cipher.decrypt(key, ciphertext)
+
+
+AES_VECTOR_SETS = AesVectorSets.parse_vector_sets()
+
+
+@pytest.fixture(params=AES_VECTOR_SETS.keys())
+def aes_vector_set(request):
+    return request.param
+
+
+def test_encrypt_aes_vector_set(aes_vector_set):
+    for vector in AES_VECTOR_SETS[aes_vector_set]:
+        assert cipher.encrypt(vector.key,
+                              vector.plaintext,
+                              bytes_to_long(vector.iv)) == vector.ciphertext
+
+
+def test_decrypt_aes_vector_set(aes_vector_set):
+    for vector in AES_VECTOR_SETS[aes_vector_set]:
+        assert cipher.decrypt(vector.key,
+                              vector.ciphertext,
+                              bytes_to_long(vector.iv)) == vector.plaintext
 
 
 SHA256_VECTOR_SETS = Sha256VectorSets.parse_vector_sets()
