@@ -1,0 +1,19 @@
+Parts of this module were taken from PyCA Cryptography [0] and therefore are
+made available under the terms of *either* of the licenses found in
+LICENSE.APACHE or LICENSE.BSD. Contributions are made under the terms of *both*
+these licenses. The files containing such parts are:
+
+- ciphers/aes/aes-128-ctr.txt.vector
+- ciphers/aes/aes-192-ctr.txt.vector
+- ciphers/aes/aes-256-ctr.txt.vector
+- ciphers/cipher_vector_sets.py
+- hashes/hash_vector_sets.py
+- hashes/sha256/Readme.txt
+- hashes/sha256/SHA256LongMsg.rsp.vector
+- hashes/sha256/SHA256ShortMsg.rsp.vector
+
+The rest of the code of this module is licensed under the GNU Lesser General
+Public License Version 3. A copy of the license can be found in the root of
+this repository as the COPYING.LESSER file.
+
+[0]: https://github.com/pyca/cryptography
